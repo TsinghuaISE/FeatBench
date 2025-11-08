@@ -186,7 +186,7 @@ Then run the evaluator:
 python -m docker_agent.runner.main --evaluate --agents your_agent
 ```
 
-#### 2. Custom Agent Evaluation (if needed)
+#### 3. Custom Agent Evaluation (if needed)
 
 To evaluate other agents or models, follow these three steps:
 
