@@ -87,7 +87,7 @@ class CacheManager:
         """Save container as new image"""
 
         # Image name must be lowercase
-        image_name = f"cached_{self.repo_lower}"
+        image_name = f"featbench_{self.repo_lower}"
 
         try:
             self.logger.info(f"Saving container as image: {image_name}")
@@ -105,7 +105,7 @@ class CacheManager:
     def check_cached_image(self) -> bool:
         """Check if cached image exists"""
 
-        image_name = f"cached_{self.repo_lower}:{self.repo_id}"
+        image_name = f"featbench_{self.repo_lower}:{self.repo_id}"
 
         try:
             self.client.images.get(image_name)
@@ -121,7 +121,7 @@ class CacheManager:
     def create_container_from_cached_image(self) -> Container:
         """Create container from cached image"""
 
-        image_name = f"cached_{self.repo_lower}:{self.repo_id}"
+        image_name = f"featbench_{self.repo_lower}:{self.repo_id}"
 
         self.logger.info(f"Creating container from cached image: {image_name}")
 

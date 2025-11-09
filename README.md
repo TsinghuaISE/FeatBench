@@ -43,7 +43,7 @@ The FeatBench dataset contains the following key attributes for each evaluation 
 - **processed**: Boolean flag indicating whether the instance has been validated
 - **FAIL_TO_PASS**: Tests that should pass after implementing the feature
 - **PASS_TO_PASS**: Tests that should continue passing (regression checks)
-- **docker_image**: Named like `cached_repo:number`
+- **docker_image**: Named like `featbench_repo:number`
 
 ### Example Instance Structure
 ```json
@@ -175,6 +175,8 @@ First, transform the data from the collection phase:
 cd FeatBench
 python -m docker_agent.tools.main
 ```
+
+**Alternatively, you can use the preprocessed dataset file `dataset/featbench_v1_0.json` (156 curated instances used in the original paper).**
 
 #### 2. Trae-Agent Evaluation (Default)
 

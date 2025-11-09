@@ -24,7 +24,7 @@ def main():
     parser.add_argument(
         "output_path",
         type=str,
-        help="Path to output JSON file (e.g., analysis_results.json)"
+        help="Path to output JSON file (e.g., featbench_v1_0.json)"
     )
     parser.add_argument(
         "--no-deduplicate",
