@@ -296,23 +296,3 @@ Each evaluation instance produces a result object with the following structure:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Citation
-
-If you use FeatBench in your research, please cite our paper:
-
-```bibtex
-@misc{chen2025featbenchevaluatingcodingagents,
-      title={FeatBench: Evaluating Coding Agents on Feature Implementation for Vibe Coding}, 
-      author={Haorui Chen and Chengze Li and Jia Li},
-      year={2025},
-      eprint={2509.22237},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2509.22237}, 
-}
-```
-
-## Support
-
-If you have any questions or suggestions, please email us at `hrchen@std.uestc.edu.cn` or feel free to make issues~
