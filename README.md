@@ -1,6 +1,6 @@
 # FeatBench
 
-Offical implementation of our paper "FeatBench: Evaluating Coding Agents on Feature Implementation for Vibe Coding". [paper](https://arxiv.org/abs/2509.22237)
+Offical implementation of our paper "FeatBench: Evaluating Coding Agents on Feature Implementation for Vibe Coding".
 
 ![paper](assets/paper.png)
 
