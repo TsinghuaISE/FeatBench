@@ -178,7 +178,22 @@ python -m docker_agent.tools.main
 
 **Alternatively, you can use the preprocessed dataset file `dataset/featbench_v1_0.json` (156 curated instances used in the original paper).**
 
-#### 2. Trae-Agent Evaluation (Default)
+#### 2. Pulling prebuilt Docker images (if needed)
+
+If you don't want to build all images locally, you can pull the prebuilt FeatBench container images that we uploaded to GitHub Container Registry (GHCR). These images have the short names used by the project (e.g., `featbench_<repo>:<id>`).
+
+```bash
+# Pull images referenced in dataset/featbench_v1_0.json (default)
+python scripts/pull_images.py --dataset dataset/featbench_v1_0.json
+
+# Pull images with 8 parallel downloads (faster when bandwidth allows)
+python scripts/pull_images.py --dataset dataset/featbench_v1_0.json --concurrency 8
+
+# Dry-run: only show what would be pulled (no network activity)
+python scripts/pull_images.py --dataset dataset/featbench_v1_0.json --dry-run
+```
+
+#### 3. Trae-Agent Evaluation (Default)
 
 The codebase defaults to supporting trae-agent evaluation. 
 
@@ -188,7 +203,7 @@ Then run the evaluator:
 python -m docker_agent.runner.main --evaluate --agents your_agent
 ```
 
-#### 3. Custom Agent Evaluation (if needed)
+#### 4. Custom Agent Evaluation (if needed)
 
 To evaluate other agents or models, follow these three steps:
 
