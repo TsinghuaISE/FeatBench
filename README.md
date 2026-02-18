@@ -80,7 +80,6 @@ cd FeatBench
 conda create -n FeatBench python=3.13 -y
 conda activate FeatBench
 
-pip install -r requirements.txt
 pip install -e .
 ```
 
@@ -100,7 +99,7 @@ The process includes four phases:
 
 #### 1. Configure Sensitive Information
 
-First, create a `.secrets.toml` file in the `docker_agent` and configure the following:
+First, create a `.secrets.toml` file in the `data_collect` and configure the following:
 
 ```bash
 # data_collect/.secrets.toml
@@ -117,7 +116,9 @@ Modify the settings in `data_collect/config.toml` as needed.
 
 ```bash
 cd FeatBench
-python -m data_collect.main
+featbench-collect
+# Alternatively: Use the traditional Python module execution
+# python -m data_collect.main
 ```
 The script supports several optional command-line arguments to customize the execution:
 - `--no-cache`: Do not use cached data; reprocess all repositories and analyses from scratch.
@@ -134,7 +135,7 @@ Build Docker container environments to prepare evaluation infrastructure.
 The program stores temporary files in the `docker_agent/swap/` subdirectory under the running directory:
 - Contains `trae-agent` clones and configuration files
 - Creates independent container images for each repository
-- **Note**: First run may require several GB of space, depending on the number of repositories processed
+- **Note**: First run may require several GB of space, depending on the number of repositories processed.
 
 #### 2. Trae-Agent Configuration
 

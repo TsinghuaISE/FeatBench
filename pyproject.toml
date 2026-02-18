@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "FeatBench"
+version = "1.0.0"
+description = "FeatBench: Towards More Realistic Evaluation of Feature-level Code Generation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "docker",
+    "openai",
+    "tqdm",
+    "dynaconf",
+    "json_repair",
+]
+
+[project.scripts]
+featbench-collect = "data_collect.main:main"
+
+[tool.setuptools]
+packages = {find = {}}
