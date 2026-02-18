@@ -1,15 +1,15 @@
 # FeatBench
 
-Offical implementation of our paper "FeatBench: Evaluating Coding Agents on Feature Implementation for Vibe Coding". [paper](https://arxiv.org/abs/2509.22237)
+Offical implementation of our paper "FeatBench: Towards More Realistic Evaluation of Feature-level Code Generation". [paper](https://arxiv.org/abs/2509.22237)
 
 ![paper](assets/paper.png)
 
 ## Abstract
-The rapid advancement of Large Language Models (LLMs) has given rise to a novel software development paradigm known as 'vibe coding,' where users interact with coding agents through high-level natural language. However, existing evaluation benchmarks for code generation inadequately assess an agent's vibecoding capabilities. Existing benchmarks are misaligned, as they either require code-level specifications or focus narrowly on issue-solving, neglecting the critical scenario of feature implementation within the vibe coding paradiam. To address this gap, we propose FeatBench, a novel benchmark for vibe coding that focuses on feature implementation. Our benchmark is distinguished by several key features: ❶ Pure Natural Language Prompts. Task inputs consist solely of abstract natural language descriptions, devoid of any code or structural hints. ❷ A Rigorous & Evolving Data Collection Process. FeatBench is built on a multi-level filtering pipeline to ensure quality and a fully automated pipeline to evolve the benchmark, mitigating data contamination. ❸ Comprehensive Test Cases. Each task includes Fail-to-Pass (F2P) and Pass-to-Pass (P2P) tests to verify correctness and prevent regressions. ❹ Diverse Application Domains. The benchmark includes repositories from diverse domains to ensure it reflects real-world scenarios. We evaluate two state-of-the-art agent frameworks with four leading LLMs on FeatBench. Our evaluation reveals that feature implementation within the vibe coding paradigm is a significant challenge, with the highest success rate of only 29.94%. Our analysis also reveals a tendency for "aggressive implementation," a strategy that paradoxically leads to both critical failures and superior software design. We release FeatBench, our automated collection pipeline, and all experimental results to facilitate further community research.
+Evaluating Large Language Models (LLMs) on repository-level feature implementation is a critical frontier in software engineering. However, establishing a benchmark that faithfully mirrors realistic development scenarios remains a significant challenge. Existing feature-level benchmarks generally suffer from two primary limitations: unrealistic task inputs enriched with code hints and significant data leakage risks due to their static nature. To address these limitations, we propose a new benchmark – FeatBench, which introduces the following advances: ❶ Realistic Task Inputs. Task inputs consist solely of natural language requirements, strictly devoid of code hints (e.g., function signatures). This format mirrors realistic software development by requiring agents to independently bridge the gap between abstract user intent and concrete code changes. ❷ Evolving Data. FeatBench employs a fully automated pipeline to construct new benchmark versions from the latest repositories, effectively mitigating data contamination. The initial release comprises 157 tasks sourced from 27 actively maintained repositories. We evaluate two state-of-the-art agent frameworks with four leading LLMs on FeatBench. The results reveal that FeatBench poses a significant challenge, with the highest resolved rate reaching only 29.94%. Crucially, our analysis uncovers a prevalent behavioral pattern of aggressive implementation, which leads to "scope creep" and widespread regressions where agents break existing features by diverging from the user’s explicit intent. We release FeatBench, our automated pipeline, and all experimental results to facilitate further community research.
 
 ## Benchmark Highlights
 
-- **Pure natural-language prompts** – task inputs contain only abstract user-facing descriptions with no code snippets or signature hints, mirroring vibe coding interactions.
+- **Realistic Task Inputs** – task inputs consist solely of natural language requirements (e.g., ``I want to...''), imposing a substantial challenge that requires agents to independently comprehend the repository context and devise a strategy to implement the feature without explicit hints.
 - **Release-grounded corpus** – each instance originates from a curated GitHub release and pull-request history, yielding high-signal requirements and verified reference patches.
 - **Rigorous, evolving pipeline** – a multi-stage, fully automated collection system applies quality filters, mitigates data contamination, and can roll forward continuously as new releases ship.
 - **Comprehensive regression checks** – Fail-to-Pass (F2P) and Pass-to-Pass (P2P) pytest selections ensure both new behaviour and legacy functionality are validated.
@@ -19,7 +19,7 @@ The rapid advancement of Large Language Models (LLMs) has given rise to a novel 
 
 ![metadata](assets/metadata.png)
 
-The FeatBench dataset contains the following key attributes for each evaluation instance:
+The FeatBench benchmark contains the following key attributes for each evaluation instance:
 
 - **repo**: Repository name in the format `owner/name` (e.g., "home-assistant/core")
 - **instance_id**: Unique identifier combining repository name and issue/PR number (e.g., "home-assistant__core-153575")
@@ -43,7 +43,7 @@ The FeatBench dataset contains the following key attributes for each evaluation 
 - **processed**: Boolean flag indicating whether the instance has been validated
 - **FAIL_TO_PASS**: Tests that should pass after implementing the feature
 - **PASS_TO_PASS**: Tests that should continue passing (regression checks)
-- **docker_image**: Named like `featbench_repo:number`
+- **docker_image**: Named like `featbench_<repo>:<id>`
 
 ### Example Instance Structure
 ```json
@@ -86,17 +86,17 @@ pip install -e .
 
 ## Instructions
 
-FeatBench operates in three main phases: **Data Collection**, **Environment Building**, and **Evaluation**. Each phase has its own configuration and requirements.
+FeatBench operates in three main stages: **Data Curation**, **Environment Configuration**, and **Evaluation**. Each stage has its own configuration and requirements.
 
-### Phase 1: Data Collection Pipeline
+### Stage 1: Data Curation Pipeline
 
-The data collection system mines real feature releases from GitHub to generate evaluation datasets.
+The data curation system mines real feature releases from GitHub to generate evaluation benchmarks.
 
-The process includes four stages:
+The process includes four phases:
 1. **Repository Collection** (`release_collector.py`): Mines GitHub for repositories based on stars and release count
 2. **Release Analysis** (`release_analyzer.py`): Analyzes release content to identify new features
 3. **PR Enhancement** (`pr_analyzer.py`): Enriches with PR-level diffs and LLM-generated task descriptions
-4. **Output Generation** (`main.py`): Orchestrates all stages to produce `final_analysis_results.json`
+4. **Output Generation** (`main.py`): Orchestrates all phases to produce `final_analysis_results.json`
 
 #### 1. Configure Sensitive Information
 
@@ -121,11 +121,11 @@ python -m data_collect.main
 ```
 The script supports several optional command-line arguments to customize the execution:
 - `--no-cache`: Do not use cached data; reprocess all repositories and analyses from scratch.
-- `--collect-only`: Perform only the repository collection stage and skip subsequent release analysis and PR enhancement.
-- `--analyze-only`: Perform only the release analysis stage, assuming repository collection has already been done.
-- `--enhance-only`: Perform only the PR enhancement stage, assuming previous stages are complete.
+- `--collect-only`: Perform only the repository collection phase and skip subsequent release analysis and PR enhancement.
+- `--analyze-only`: Perform only the release analysis phase, assuming repository collection has already been done.
+- `--enhance-only`: Perform only the PR enhancement phase, assuming previous phases are complete.
 
-### Phase 2: Environment Building Pipeline
+### Phase 2: Environment Configuration Pipeline
 
 Build Docker container environments to prepare evaluation infrastructure.
 
