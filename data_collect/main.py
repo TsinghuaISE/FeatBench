@@ -5,15 +5,15 @@ from typing import List, Dict
 import sys
 from tqdm import tqdm
 
-from release_collector import (
+from .release_collector import (
     Repository,
     load_processed_repos,
     get_repositories_to_process,
     process_single_repository,
 )
-from release_analyzer import analyze_repository_releases, ReleaseAnalysis, load_analysis_cache
-from pr_analyzer import enhance_release_analysis_with_pr_details, load_pr_analysis_cache
-from config import OUTPUT_DIR, FINAL_RESULTS_FILE, SAMPLE_RESULTS_LIMIT
+from .release_analyzer import analyze_repository_releases, ReleaseAnalysis, load_analysis_cache
+from .pr_analyzer import enhance_release_analysis_with_pr_details, load_pr_analysis_cache
+from .config import OUTPUT_DIR, FINAL_RESULTS_FILE, SAMPLE_RESULTS_LIMIT
 
 def setup_output_directory():
     """Create output directory"""

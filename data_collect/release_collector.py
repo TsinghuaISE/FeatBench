@@ -5,12 +5,12 @@ from typing import List, Dict, Tuple
 from datetime import datetime
 from tqdm import tqdm
 
-from utils import (
+from .utils import (
     get_candidate_repos, get_repository_info, has_test_cases,
     get_repository_readme, get_ci_configs, extract_version_components,
     get_repository_releases, Release, Repository
 )
-from config import (
+from .config import (
     CRAWL_MODE, CRAWL_JSON_FILE, MIN_STARS, RANK_START, RANK_END,
     MIN_RELEASES, MIN_RELEASE_BODY_LENGTH, MIN_RELEASE_DATE, EXCLUDED_TOPICS,
     TEST_DIRECTORIES, TEST_FILE_PATTERNS, BOT_USERS, CACHE_FILE,

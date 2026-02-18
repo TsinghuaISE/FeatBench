@@ -6,8 +6,8 @@ from dataclasses import dataclass, asdict
 import openai
 from tqdm import tqdm
 
-from utils import is_test_file, get_pr_info, get_pr_files, get_file_content, get_commit_info, extract_pr_number_from_url, FileChange, Commit
-from config import (
+from .utils import is_test_file, get_pr_info, get_pr_files, get_file_content, get_commit_info, extract_pr_number_from_url, FileChange, Commit
+from .config import (
     OPENAI_API_KEY, OPENAI_MODEL, OPENAI_BASE_URL, PR_ANALYSIS_CACHE_FILE,
     MAX_FILES_IN_SUMMARY, MAX_PATCH_LENGTH, MAX_PATCH_PREVIEW_LENGTH, PROMPTS
 )

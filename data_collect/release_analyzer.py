@@ -5,7 +5,8 @@ from dataclasses import dataclass, asdict
 import openai
 import json_repair
 from tqdm import tqdm
-from config import (
+
+from .config import (
     OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_MODEL, ANALYSIS_CACHE_FILE,
     MAX_README_LENGTH, README_TRUNCATION_SUFFIX, PROMPTS
 )

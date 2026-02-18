@@ -5,7 +5,8 @@ import base64
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass, asdict
-from config import (
+
+from .config import (
     GITHUB_API_BASE, GITHUB_HEADERS,
     TEST_DIRECTORIES, TEST_FILE_PATTERNS
 )
