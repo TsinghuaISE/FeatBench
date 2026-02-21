@@ -318,10 +318,10 @@ This project is licensed under the [MIT License](LICENSE).
 If you use FeatBench in your research, please cite our paper:
 
 ```bibtex
-@misc{chen2025featbenchevaluatingcodingagents,
-      title={FeatBench: Evaluating Coding Agents on Feature Implementation for Vibe Coding}, 
+@misc{chen2026featbenchrealisticevaluationfeaturelevel,
+      title={FeatBench: Towards More Realistic Evaluation of Feature-level Code Generation}, 
       author={Haorui Chen and Chengze Li and Jia Li},
-      year={2025},
+      year={2026},
       eprint={2509.22237},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
